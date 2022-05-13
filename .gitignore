@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,macos,windows,linux,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,windows,linux,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos,visualstudiocode,react
+# Edit at https://www.toptal.com/developers/gitignore?templates=node,windows,linux,macos,visualstudiocode,react
 
 ### Linux ###
 *~
@@ -190,6 +190,19 @@ dist
 # SvelteKit build / generate output
 .svelte-kit
 
+### react ###
+.DS_*
+**/*.backup.*
+**/*.back.*
+
+node_modules
+
+*.sublime*
+
+psd
+thumb
+sketch
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -241,4 +254,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/node,macos,windows,linux,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/node,windows,linux,macos,visualstudiocode,react
