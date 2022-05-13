@@ -1,4 +1,4 @@
-const allPlanets = require('../../models/planets.model');
+const { planets } = require('../../models/planets.model');
 
 /**
  * handle the incoming request for get
@@ -12,7 +12,7 @@ function getAllPlanets(req, res) {
    *  return in orden to end the execution
    *  of the function
    */
-  return res.status(200).json(allPlanets);
+  return res.status(200).json(planets);
 }
 
 module.exports = getAllPlanets;
