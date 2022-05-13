@@ -10,7 +10,9 @@
   "description": "Nasa Mission Control API",
   "version": "1.0.0",
   "main": "src/index.js",
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.18.1"
+  },
   "scripts": {
     "watch": "PORT=5000 nodemon ./src/server.js",
     "start": "PORT=5000 node ./src/server.js"
