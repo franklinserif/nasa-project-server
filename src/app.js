@@ -1,7 +1,13 @@
 const express = require('express');
+const cors = require('cors');
 const planetRouter = require('./routes/planets/planets.router');
 
 const app = express();
+app.use(
+  cors({
+    origin: 'https://localhost:3000',
+  }),
+);
 
 /**
  * parse any incoming json request in req.body
