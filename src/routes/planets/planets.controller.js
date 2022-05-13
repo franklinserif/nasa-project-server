@@ -1,4 +1,4 @@
-const allPlanets = [];
+const allPlanets = require('../../models/planets.model');
 
 /**
  * handle the incoming request for get
