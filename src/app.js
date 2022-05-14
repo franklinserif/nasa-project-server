@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const morgan = require('morgan');
 const planetRouter = require('./routes/planets/planets.router');
 
 const app = express();
@@ -10,6 +11,14 @@ app.use(
   }),
 );
 
+/**
+ * Logs
+ */
+app.use(
+  morgan('combined', {
+    skip: (req, res) => res.statusCode < 400,
+  }),
+);
 /**
  * parse any incoming json request in req.body
  */
