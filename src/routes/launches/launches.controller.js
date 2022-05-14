@@ -1,4 +1,4 @@
-const { launches } = require('../../models/launches.model');
+const { getAlllaunches } = require('../../models/launches.model');
 
 /**
  * It controls all incoming request and
@@ -6,8 +6,8 @@ const { launches } = require('../../models/launches.model');
  * @param {Object} req
  * @param {Object} res
  */
-function getAllLaunches(req, res) {
-  return res.status(200).json(Array.from(launches.values()));
+function httpGetAllLaunches(req, res) {
+  return res.status(200).json(getAlllaunches());
 }
 
-module.exports = getAllLaunches;
+module.exports = httpGetAllLaunches;

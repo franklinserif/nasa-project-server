@@ -1,4 +1,4 @@
-const { planets } = require('../../models/planets.model');
+const { getAllPlanets } = require('../../models/planets.model');
 
 /**
  * handle the incoming request for get
@@ -6,13 +6,13 @@ const { planets } = require('../../models/planets.model');
  * @param {Object} req
  * @param {Object} res
  */
-function getAllPlanets(req, res) {
+function httpGetAllPlanets(req, res) {
   /**
    *  by default express return 200 ok
    *  return in orden to end the execution
    *  of the function
    */
-  return res.status(200).json(planets);
+  return res.status(200).json(getAllPlanets());
 }
 
-module.exports = getAllPlanets;
+module.exports = httpGetAllPlanets;
