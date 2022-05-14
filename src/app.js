@@ -16,6 +16,12 @@ app.use(
  */
 app.use(
   morgan('combined', {
+    /**
+     * It will log all request except < 400 request
+     * @param {Object} req
+     * @param {Object} res
+     * @returns
+     */
     skip: (req, res) => res.statusCode < 400,
   }),
 );
