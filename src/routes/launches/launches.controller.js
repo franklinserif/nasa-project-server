@@ -33,4 +33,12 @@ function httpAddNewLaunch(req, res) {
   addNewLaunches(launch);
   return res.status(201).json(launch);
 }
-module.exports = { httpGetAllLaunches, httpAddNewLaunch };
+
+/**
+ * It will delete the launch
+ * @param {Object} req
+ * @param {Object} res
+ */
+function httpAbortLaunch(req, res) {}
+
+module.exports = { httpGetAllLaunches, httpAddNewLaunch, httpAbortLaunch };
