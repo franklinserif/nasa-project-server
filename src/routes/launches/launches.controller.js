@@ -1,4 +1,8 @@
-const { getAlllaunches } = require('../../models/launches.model');
+/* eslint-disable operator-linebreak */
+const {
+  getAlllaunches,
+  addNewLaunches,
+} = require('../../models/launches.model');
 
 /**
  * It controls all incoming request and
@@ -10,4 +14,23 @@ function httpGetAllLaunches(req, res) {
   return res.status(200).json(getAlllaunches());
 }
 
-module.exports = httpGetAllLaunches;
+function httpAddNewLaunch(req, res) {
+  const launch = req.body;
+
+  if (
+    !launch.mission ||
+    !launch.rocket ||
+    !launch.launchDate ||
+    !launch.destination
+  ) {
+    return res.status(400).json({ error: 'Missing required launch property' });
+  }
+
+  if (isNaN(launch.launchDate)) {
+    return res.status(400).json({ error: 'Invalid launch Date' });
+  }
+  launch.launchDate = new Date(launch.launchDate);
+  addNewLaunches(launch);
+  res.status(201).json(launch);
+}
+module.exports = { httpGetAllLaunches, httpAddNewLaunch };
