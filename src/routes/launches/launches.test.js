@@ -13,9 +13,8 @@ describe('Test GET / launches', () => {
 
 describe('Test POST / launches', () => {
   test('It should response with 201 created', async () => {
-    const response = await (
-      await request(app).post('/launches')
-    )
+    const response = await request(app)
+      .post('/launches')
       .send({
         mission: 'USS Enterprise',
         rocket: 'NCC 1701-D',
