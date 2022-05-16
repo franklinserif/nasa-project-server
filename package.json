@@ -23,7 +23,8 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "watch": "ENVIROMENT=dev PORT=4000 nodemon ./src/server.js",
-    "start": "ENVIROMENT=prod PORT=4000 node ./src/server.js"
+    "start": "ENVIROMENT=prod PORT=4000 node ./src/server.js",
+    "cluster": "pm2 start ./src/server.js -i max"
   },
   "repository": {
     "type": "git",
