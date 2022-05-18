@@ -21,9 +21,7 @@ const server = http.createServer(app);
  * It will load data from csv and start the server
  */
 async function startServer() {
-  await mongoose.connect(MONGO_URL, {
-    useUnifiedTopology: true,
-  });
+  await mongoose.connect(MONGO_URL);
 
   await loadPlanetsData();
 
