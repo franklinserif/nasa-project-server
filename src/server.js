@@ -5,7 +5,7 @@ const { loadPlanetsData } = require('./models/planets.model');
 
 const { PORT } = process.env;
 const ENVIROMENT = process.env.ENVIROMENT || 'dev';
-const MONGO_URL = 'mongodb+srv://franklinserif:omYcf0PzCWE39tbk@nasacluster.xmw4a.mongodb.net/nasa?retryWrites=true&w=majority';
+const MONGO_URL = `mongodb+srv://franklinserif:omYcf0PzCWE39tbk@nasacluster.xmw4a.mongodb.net/nasa?retryWrites=true&w=majority`;
 
 mongoose.connection.once('open', () => {
   console.log('MongoDB connection ready!');
