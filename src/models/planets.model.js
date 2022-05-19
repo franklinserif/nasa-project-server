@@ -40,9 +40,12 @@ async function loadPlanetsData() {
         if (isHabitablePlanet(data)) {
           /*
            * TODO: Replace below create with insert + udpate = upsert
-           * await planets.create({ keplerName: data.kepler_name });
-           *
            */
+          await planets.updateOne(
+            { keplerName: data.kepler_name },
+            { keplerName: data.kepler_name },
+            { upsert: true },
+          );
         }
       })
       .on('error', (error) => {
