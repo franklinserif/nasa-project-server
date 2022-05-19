@@ -77,7 +77,7 @@ async function loadPlanetsData() {
         reject();
       })
       .on('end', async () => {
-        const countsPlanetsFound = await getAllPlanets().length;
+        const countsPlanetsFound = (await getAllPlanets()).length;
         console.log(`${countsPlanetsFound} habitable planets found`);
         resolve();
       });

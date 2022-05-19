@@ -6,13 +6,15 @@ const { getAllPlanets } = require('../../models/planets.model');
  * @param {Object} req
  * @param {Object} res
  */
-function httpGetAllPlanets(req, res) {
+async function httpGetAllPlanets(req, res) {
   /**
    *  by default express return 200 ok
    *  return in orden to end the execution
    *  of the function
    */
-  return res.status(200).json(getAllPlanets());
+
+  const listOfPlanets = await getAllPlanets();
+  return res.status(200).json(listOfPlanets);
 }
 
 module.exports = httpGetAllPlanets;
