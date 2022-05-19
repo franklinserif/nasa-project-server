@@ -4,13 +4,11 @@ const fs = require('fs');
 const path = require('path');
 const planets = require('./planet.mongo');
 
-const habitablePlanets = [];
-
 /**
  * It will verify if planet conditions are good for
  * human being
  * @param {Object} planet
- * @returns
+ * @returns {void}
  */
 function isHabitablePlanet(planet) {
   return (
@@ -22,7 +20,37 @@ function isHabitablePlanet(planet) {
 }
 
 /**
- * IT will parse and read csv kepler data
+ * It upsert (save if already exist or insert if it's not exist)
+ * a planet into Mongo db
+ * @param {Object} planet
+ * @return {void}
+ */
+async function savePlanet(planet) {
+  await planets.updateOne(
+    { keplerName: planet.kepler_name },
+    { keplerName: planet.kepler_name },
+    { upsert: true },
+  );
+}
+
+/**
+ * It will find all planets in mongo db and return a list
+ * @returns {Object[]}
+ */
+async function getAllPlanets() {
+  try {
+    const planetsList = await planets.find({});
+
+    return planetsList;
+  } catch (error) {
+    console.log(`Could not save planet ${error}`);
+    return [{}];
+  }
+}
+
+/**
+ * IT will parse and read csv kepler data and
+ * update or insert the data into Mogodb
  * @returns {Promise}
  */
 async function loadPlanetsData() {
@@ -41,29 +69,19 @@ async function loadPlanetsData() {
           /*
            * TODO: Replace below create with insert + udpate = upsert
            */
-          await planets.updateOne(
-            { keplerName: data.kepler_name },
-            { keplerName: data.kepler_name },
-            { upsert: true },
-          );
+          await savePlanet(data);
         }
       })
       .on('error', (error) => {
         console.log(error);
         reject();
       })
-      .on('end', () => {
-        /*  console.log(habitablePlanets.map((planet) => planet.kepler_name));
-        console.log(`${habitablePlanets.length} habitable planets founds`); */
+      .on('end', async () => {
+        const countsPlanetsFound = await getAllPlanets().length;
+        console.log(`${countsPlanetsFound} habitable planets found`);
         resolve();
       });
   });
-}
-
-async function getAllPlanets() {
-  const planetsList = await planets.find({});
-
-  return planetsList;
 }
 
 module.exports = {
