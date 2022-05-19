@@ -1,7 +1,7 @@
 /* eslint-disable operator-linebreak */
 const {
   getAllLaunches,
-  addNewLaunches,
+  scheduleNewLaunch,
   existLauncheWitId,
   abortLaunchById,
 } = require('../../models/launches.model');
@@ -12,11 +12,12 @@ const {
  * @param {Object} req
  * @param {Object} res
  */
-function httpGetAllLaunches(req, res) {
-  return res.status(200).json(getAllLaunches());
+async function httpGetAllLaunches(req, res) {
+  const listOfLaunches = await getAllLaunches();
+  return res.status(200).json(listOfLaunches);
 }
 
-function httpAddNewLaunch(req, res) {
+async function httpAddNewLaunch(req, res) {
   const launch = req.body;
 
   if (
@@ -29,11 +30,12 @@ function httpAddNewLaunch(req, res) {
   }
 
   launch.launchDate = new Date(launch.launchDate);
+  // eslint-disable-next-line no-restricted-globals
   if (isNaN(launch.launchDate)) {
     return res.status(400).json({ error: 'Invalid launch Date' });
   }
-  addNewLaunches(launch);
-  return res.status(201).json(launch);
+  const newLaunch = await scheduleNewLaunch(launch);
+  return res.status(201).json(newLaunch);
 }
 
 /**
