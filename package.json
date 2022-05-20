@@ -27,6 +27,9 @@
     "start": "ENVIROMENT=prod PORT=4000 node ./src/server.js",
     "cluster": "ENVIROMENT=prod PORT=4000 pm2 start ./src/server.js -i max"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/franklingrab/nasa-project-server.git"
